@@ -57,7 +57,12 @@ public class Tool extends Item {
      */
     public Tool(Tool src)
     {
-
+        super.setName(src.getName());
+        this.setDurability(src.getDurability());
+        this.setSpeed(src.getSpeed());
+        this.setMaterial(src.getMaterial());
+        this.setModifier(src.getModifier());
+        this.setModifierLevel(src.getModifierLevel());
     }
 
     /**
@@ -173,6 +178,13 @@ public class Tool extends Item {
     public void read(Scanner snr)
     {
         // Complete this method
+        super.setName(snr.next());
+        this.setMaterial(snr.next());
+        this.setDurability(snr.nextInt());
+        this.setSpeed(snr.nextInt());
+        this.setModifier(snr.next());
+        this.setModifierLevel(snr.nextInt());
+
     }
 
     /**
@@ -199,7 +211,7 @@ public class Tool extends Item {
         Tool rhsItem = (Tool) rhs;
 
         // Replace the next line
-        return false;
+        return rhsItem.hashCode() == this.hashCode();
     }
 
     /**
@@ -219,7 +231,25 @@ public class Tool extends Item {
      */
     @Override
     public String toString()
-    {
-        return "";
+    { 
+        String fmtString = String.join(
+            System.lineSeparator(),
+        "  Nme: %s",
+            "  Dur: %d",
+            "  Spd: %d",
+            "  Mtl: %s", 
+            "  Mdr: %s (Lvl %d)",
+            ""
+        );
+
+        return String.format(
+            fmtString,
+            this.getName(),
+            this.getDurability(),
+            this.getSpeed(),
+            this.getMaterial(),
+            this.getModifier(),
+            this.getModifierLevel()
+        );
     }
 }
